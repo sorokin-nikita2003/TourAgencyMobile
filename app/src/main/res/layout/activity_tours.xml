@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/toursContainer"
+    android:orientation="vertical">
+
+    <!-- Кнопка для добавления тура -->
+    <Button
+        android:id="@+id/btnAddTour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Добавить тур"
+        android:textSize="18sp"
+        android:padding="10dp"
+        android:layout_margin="8dp" />
+
+    <!-- RecyclerView для отображения туров -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTours"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
