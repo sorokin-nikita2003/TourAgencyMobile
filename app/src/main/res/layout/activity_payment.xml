@@ -1,0 +1,39 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Поле для ввода номера карты -->
+    <EditText
+        android:id="@+id/etCardNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Номер карты"
+        android:inputType="number"
+        android:maxLength="19"
+        android:ems="10"
+        android:padding="12dp" />
+
+    <!-- Поле для ввода CVV -->
+    <EditText
+        android:id="@+id/etCVV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CVV"
+        android:inputType="number"
+        android:maxLength="3"
+        android:ems="3"
+        android:padding="12dp" />
+
+    <!-- Кнопка подтверждения -->
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Оплатить"
+        android:layout_marginTop="16dp"
+        android:padding="12dp" />
+
+</LinearLayout>

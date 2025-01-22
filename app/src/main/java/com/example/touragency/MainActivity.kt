@@ -39,13 +39,17 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val loginResponse = response.body()
                         val token = loginResponse?.token
-                        if (!token.isNullOrEmpty()) {
-                            // Переход на новую Activity
+                        val roles = loginResponse?.roles
+
+                        if (!token.isNullOrEmpty() && !roles.isNullOrEmpty()) {
+                            // Переход на новую Activity с передачей токена и ролей
                             val intent = Intent(this@MainActivity, ToursActivity::class.java)
                             intent.putExtra("TOKEN", token)
+                            intent.putExtra("USERNAME", username) // Передаем имя пользователя
+                            intent.putStringArrayListExtra("ROLES", ArrayList(roles))
                             startActivity(intent)
                         } else {
-                            Toast.makeText(this@MainActivity, "Login failed: Token is null", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MainActivity, "Login failed: Missing token or roles", Toast.LENGTH_SHORT).show()
                         }
                     } else {
                         Toast.makeText(this@MainActivity, "Login failed: ${response.message()}", Toast.LENGTH_SHORT).show()

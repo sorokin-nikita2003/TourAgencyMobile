@@ -29,6 +29,18 @@
             android:name=".AddTourActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".OrdersActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".BasketActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="true">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"
         tools:ignore="ManifestOrder" />

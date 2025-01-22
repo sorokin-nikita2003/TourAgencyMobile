@@ -1,0 +1,7 @@
+<resources>
+    <!-- Кастомный стиль для AlertDialog -->
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+</resources>

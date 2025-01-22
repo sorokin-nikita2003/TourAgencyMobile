@@ -38,13 +38,31 @@
             android:hint="Описание"
             android:layout_marginBottom="8dp" />
 
+        <!-- Поле для выбора даты (вызывается DatePickerDialog) -->
+
+        <!-- Чекбокс для указания, горящий ли тур -->
         <EditText
             android:id="@+id/etDateStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Дата начала (например, 2025-01-15T00:00:00)"
-            android:inputType="datetime"
-            android:layout_marginBottom="8dp" />
+            android:hint="Дата начала"
+            android:ems="10"
+            android:inputType="date" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Дата начала"
+            android:ems="10"
+            android:inputType="date" />
+
+        <CheckBox
+            android:id="@+id/cbIsHotTour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Горящий тур"
+            android:layout_marginBottom="16dp" />
 
         <Button
             android:id="@+id/btnSubmit"
