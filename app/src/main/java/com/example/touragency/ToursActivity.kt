@@ -49,13 +49,16 @@ class ToursActivity : AppCompatActivity(), OnTourClickListener {
 
         val btnAddTour = findViewById<Button>(R.id.btnAddTour)
         val btnViewOrders = findViewById<Button>(R.id.btnViewOrders) // Кнопка для открытия заказов
+        val btnStat = findViewById<Button>(R.id.btnStat) // Кнопка для открытия заказов
         val btnExit = findViewById<Button>(R.id.btnExit) // Кнопка для открытия заказов
 
         btnAddTour.visibility = View.GONE
+        btnStat.visibility = View.GONE
 
         if (roles != null && (roles as ArrayList<String>).contains("TourOperator")) {
             // Если пользователь с ролью TourOperator
             btnAddTour.visibility = View.VISIBLE
+            btnStat.visibility = View.VISIBLE
             btnViewOrders.setText("Заказы клиентов")
             // Дополнительная логика для TourOperator
         } else {
@@ -80,12 +83,22 @@ class ToursActivity : AppCompatActivity(), OnTourClickListener {
             intent.putStringArrayListExtra("ROLES", ArrayList(roles))
         }
 
+        btnStat.setOnClickListener {
+            val intent = Intent(this@ToursActivity, StatisticsActivity::class.java)
+            intent.putExtra("TOKEN", token)
+            intent.putExtra("USERNAME", username) // Передаем имя пользователя
+            intent.putStringArrayListExtra("ROLES", ArrayList(roles))
+            startActivity(intent)
+            finish()
+        }
+
         // Обработчик для открытия страницы заказов
         btnViewOrders.setOnClickListener {
             val intent = Intent(this@ToursActivity, OrdersActivity::class.java)
             intent.putExtra("TOKEN", token)
             intent.putStringArrayListExtra("ROLES", ArrayList(roles))
             startActivity(intent)
+            finish()
         }
     }
 

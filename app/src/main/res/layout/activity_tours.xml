@@ -9,34 +9,47 @@
     <!-- Кнопка "Добавить тур" -->
     <Button
         android:id="@+id/btnAddTour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
         android:padding="10dp"
         android:text="Добавить тур"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Кнопка "Заказы клиентов" -->
-    <Button
-        android:id="@+id/btnViewOrders"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Заказы клиентов"
-        android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@id/btnAddTour"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="8dp" />
 
     <!-- Кнопка "Выйти" -->
+
+    <Button
+        android:id="@+id/btnViewOrders"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:padding="10dp"
+        android:text="Заказы клиентов"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/btnStat"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnStat"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:padding="10dp"
+        android:text="Статистика"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@id/btnAddTour"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btnExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
         android:padding="10dp"
         android:text="Выйти"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

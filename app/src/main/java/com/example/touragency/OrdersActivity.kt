@@ -3,6 +3,7 @@ package com.example.touragency
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.Toast
@@ -33,12 +34,32 @@ class OrdersActivity : AppCompatActivity(), OnOrderClickListener {
 
         recyclerView = findViewById(R.id.recyclerViewOrders)
         val btnViewTours = findViewById<Button>(R.id.btnViewTours)
+        val btnStat = findViewById<Button>(R.id.btnStat)
         val btnExit = findViewById<Button>(R.id.btnExit)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        btnStat.visibility = View.GONE
+        if (roles != null && (roles as ArrayList<String>).contains("TourOperator")) {
+            // Если пользователь с ролью TourOperator
+            btnStat.visibility = View.VISIBLE
+            // Дополнительная логика для TourOperator
+        }
 
         loadOrders(roles as ArrayList<String>?)
 
         btnViewTours.setOnClickListener {
+            val intent = Intent(this@OrdersActivity, ToursActivity::class.java)
+            intent.putExtra("TOKEN", token)
+            intent.putStringArrayListExtra("ROLES", ArrayList(roles))
+            startActivity(intent)
+            finish()
+        }
+
+        btnStat.setOnClickListener {
+            val intent = Intent(this@OrdersActivity, StatisticsActivity::class.java)
+            intent.putExtra("TOKEN", token)
+            intent.putStringArrayListExtra("ROLES", ArrayList(roles))
+            startActivity(intent)
             finish()
         }
 
@@ -46,7 +67,6 @@ class OrdersActivity : AppCompatActivity(), OnOrderClickListener {
             val intent = Intent(this@OrdersActivity, MainActivity::class.java)
             intent.putExtra("TOKEN", token)
             startActivity(intent)
-
             finish()
         }
     }

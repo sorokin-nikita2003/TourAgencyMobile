@@ -42,6 +42,10 @@ interface AuthApi {
 
     @POST("api/Tours/Delete/{id}")
     fun deleteTour(@Path("id") id: Int): Call<Void>
+
+    @GET("api/Profile/Stat")
+    fun getStatistics(): Call<Map<String, Int>>
+
 }
 
 interface OnTourClickListener {

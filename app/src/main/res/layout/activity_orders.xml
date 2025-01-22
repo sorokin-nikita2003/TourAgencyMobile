@@ -7,21 +7,32 @@
 
     <Button
         android:id="@+id/btnViewTours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
         android:padding="10dp"
         android:text="Туры"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/btnStat"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:padding="10dp"
+        android:text="Статистика"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/btnViewTours"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/btnExit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
         android:padding="10dp"
         android:text="Выйти"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
