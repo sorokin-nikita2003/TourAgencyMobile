@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.VISIBLE
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,21 @@ class OrdersActivity : AppCompatActivity(), OnOrderClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders)
+
+        val dbHelper = DatabaseHelper(this)
+        val user = dbHelper.getCurrentUser()
+
+        if (user != null) {
+            // Отображаем имя и роль пользователя
+            val tvUserName = findViewById<TextView>(R.id.tvUserName)
+            val tvUserRole = findViewById<TextView>(R.id.tvUserRole)
+
+            tvUserName.text = "Имя: ${user.username}"
+            tvUserRole.text = "Роль: ${user.roles}"
+        } else {
+            // Если пользователь не авторизован
+            Toast.makeText(this, "Пользователь не авторизован", Toast.LENGTH_SHORT).show()
+        }
 
         token = intent.getStringExtra("TOKEN") ?: ""
         roles = intent.getStringArrayListExtra("ROLES")
@@ -64,6 +80,7 @@ class OrdersActivity : AppCompatActivity(), OnOrderClickListener {
         }
 
         btnExit.setOnClickListener{
+            dbHelper.deleteUser()
             val intent = Intent(this@OrdersActivity, MainActivity::class.java)
             intent.putExtra("TOKEN", token)
             startActivity(intent)

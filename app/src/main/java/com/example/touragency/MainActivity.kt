@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.touragency.serverConnection.LoginRequest
@@ -22,10 +23,18 @@ class MainActivity : AppCompatActivity() {
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val RegistrBtn = findViewById<TextView>(R.id.RegistrBtn)
+        val tvPasswordError = findViewById<TextView>(R.id.tvPasswordError)
+
+        RegistrBtn.setOnClickListener {
+            val intent = Intent(this@MainActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         btnLogin.setOnClickListener {
             val username = etUsername.text.toString().trim()
             val password = etPassword.text.toString().trim()
+
 
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
@@ -42,6 +51,8 @@ class MainActivity : AppCompatActivity() {
                         val roles = loginResponse?.roles
 
                         if (!token.isNullOrEmpty() && !roles.isNullOrEmpty()) {
+                            val dbHelper = DatabaseHelper(this@MainActivity)
+                            dbHelper.saveUser(username, password, ArrayList(roles).get(0))
                             // Переход на новую Activity с передачей токена и ролей
                             val intent = Intent(this@MainActivity, ToursActivity::class.java)
                             intent.putExtra("TOKEN", token)
@@ -52,6 +63,9 @@ class MainActivity : AppCompatActivity() {
                             Toast.makeText(this@MainActivity, "Login failed: Missing token or roles", Toast.LENGTH_SHORT).show()
                         }
                     } else {
+                        if (response.message() == "Unauthorized") {
+                            tvPasswordError.text = "Неправильный логин или пароль"
+                        }
                         Toast.makeText(this@MainActivity, "Login failed: ${response.message()}", Toast.LENGTH_SHORT).show()
                     }
                 }

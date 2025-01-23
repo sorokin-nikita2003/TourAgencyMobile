@@ -1,9 +1,22 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Оплата заказа"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="41dp" />
 
     <!-- Поле для ввода номера карты -->
     <EditText
@@ -14,7 +27,8 @@
         android:inputType="number"
         android:maxLength="19"
         android:ems="10"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:textSize="30sp" />
 
     <!-- Поле для ввода CVV -->
     <EditText
@@ -25,7 +39,9 @@
         android:inputType="number"
         android:maxLength="3"
         android:ems="3"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:textSize="30sp" />
+
 
     <!-- Кнопка подтверждения -->
     <Button
@@ -34,6 +50,7 @@
         android:layout_height="wrap_content"
         android:text="Оплатить"
         android:layout_marginTop="16dp"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:textSize="30sp" />
 
 </LinearLayout>

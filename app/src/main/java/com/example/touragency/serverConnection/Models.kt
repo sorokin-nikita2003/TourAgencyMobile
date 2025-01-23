@@ -69,3 +69,9 @@ data class BankCard(
     val CardNum: String,
     val CVV: String,
 )
+
+data class RegisterRequest(
+    val email: String,
+    val password: String,
+    val passwordConfirm: String
+)

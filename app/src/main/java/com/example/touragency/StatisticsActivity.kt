@@ -22,6 +22,21 @@ class StatisticsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
 
+        val dbHelper = DatabaseHelper(this)
+        val user = dbHelper.getCurrentUser()
+
+        if (user != null) {
+            // Отображаем имя и роль пользователя
+            val tvUserName = findViewById<TextView>(R.id.tvUserName)
+            val tvUserRole = findViewById<TextView>(R.id.tvUserRole)
+
+            tvUserName.text = "Имя: ${user.username}"
+            tvUserRole.text = "Роль: ${user.roles}"
+        } else {
+            // Если пользователь не авторизован
+            Toast.makeText(this, "Пользователь не авторизован", Toast.LENGTH_SHORT).show()
+        }
+
         token = intent.getStringExtra("TOKEN") ?: ""
         roles = intent.getStringArrayListExtra("ROLES")
 
@@ -44,6 +59,7 @@ class StatisticsActivity : AppCompatActivity() {
             finish()
         }
         btnExit.setOnClickListener{
+            dbHelper.deleteUser()
             val intent = Intent(this@StatisticsActivity, MainActivity::class.java)
             intent.putExtra("TOKEN", token)
             startActivity(intent)

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -31,6 +32,21 @@ class ToursActivity : AppCompatActivity(), OnTourClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tours)
+
+        val dbHelper = DatabaseHelper(this)
+        val user = dbHelper.getCurrentUser()
+
+        if (user != null) {
+            // Отображаем имя и роль пользователя
+            val tvUserName = findViewById<TextView>(R.id.tvUserName)
+            val tvUserRole = findViewById<TextView>(R.id.tvUserRole)
+
+            tvUserName.text = "Имя: ${user.username}"
+            tvUserRole.text = "Роль: ${user.roles}"
+        } else {
+            // Если пользователь не авторизован
+            Toast.makeText(this, "Пользователь не авторизован", Toast.LENGTH_SHORT).show()
+        }
 
         token = intent.getStringExtra("TOKEN") ?: run {
             Log.e("ToursActivity", "Token is null or missing")
@@ -69,6 +85,8 @@ class ToursActivity : AppCompatActivity(), OnTourClickListener {
         loadTours(roles as ArrayList<String>?)
 
         btnExit.setOnClickListener{
+//            val dbHelper = DatabaseHelper(this)
+            dbHelper.deleteUser()
             val intent = Intent(this@ToursActivity, MainActivity::class.java)
             intent.putExtra("TOKEN", token)
             startActivity(intent)

@@ -46,6 +46,8 @@ interface AuthApi {
     @GET("api/Profile/Stat")
     fun getStatistics(): Call<Map<String, Int>>
 
+    @POST("api/Profile/RegisterClient")
+    fun registerClient(@Body registerRequest: RegisterRequest): Call<Void>
 }
 
 interface OnTourClickListener {

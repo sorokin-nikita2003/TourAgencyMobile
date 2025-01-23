@@ -13,8 +13,9 @@
             android:id="@+id/etTourName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:hint="Название тура"
-            android:layout_marginBottom="8dp" />
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/etPrice"
@@ -22,21 +23,24 @@
             android:layout_height="wrap_content"
             android:hint="Цена"
             android:inputType="number"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/etCountry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Страна"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:textSize="30sp" />
 
         <EditText
             android:id="@+id/etDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Описание"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:textSize="30sp" />
 
         <!-- Поле для выбора даты (вызывается DatePickerDialog) -->
 
@@ -47,7 +51,8 @@
             android:layout_height="wrap_content"
             android:hint="Дата начала"
             android:ems="10"
-            android:inputType="date" />
+            android:inputType="date"
+            android:textSize="30sp" />
 
         <DatePicker
             android:id="@+id/datePicker"
@@ -62,12 +67,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Горящий тур"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Добавить тур" />
+            android:text="Добавить тур"
+            android:textSize="30sp" />
     </LinearLayout>
 </ScrollView>
