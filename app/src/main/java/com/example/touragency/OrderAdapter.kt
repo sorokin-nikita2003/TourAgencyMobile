@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Locale
 
-class OrderAdapter(private val context: Context, private val orders: List<Order>, private val listener: OnOrderClickListener, private val roles: ArrayList<String>?) :
+class OrderAdapter(private val context: Context, private val orders: List<Order>, private val listener: OnOrderClickListener, private val roles: ArrayList<String>?, private val user: String) :
     RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {

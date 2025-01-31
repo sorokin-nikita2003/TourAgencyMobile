@@ -55,6 +55,7 @@ class ToursActivity : AppCompatActivity(), OnTourClickListener {
         }
 
         username = intent.getStringExtra("USERNAME") // Инициализируем глобальную переменную username
+        Log.e("eeeeeee", username.toString());
 
         // Извлекаем токен и роли
         roles = intent.getStringArrayListExtra("ROLES")
@@ -114,6 +115,7 @@ class ToursActivity : AppCompatActivity(), OnTourClickListener {
         btnViewOrders.setOnClickListener {
             val intent = Intent(this@ToursActivity, OrdersActivity::class.java)
             intent.putExtra("TOKEN", token)
+            intent.putExtra("USERNAME", username)
             intent.putStringArrayListExtra("ROLES", ArrayList(roles))
             startActivity(intent)
             finish()

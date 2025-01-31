@@ -9,6 +9,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     // Создание таблицы для хранения данных пользователя
     override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL("CREATE TABLE IF NOT EXISTS your_table_name (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)")
         val createTableQuery = """
             CREATE TABLE $TABLE_NAME (
                 $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,

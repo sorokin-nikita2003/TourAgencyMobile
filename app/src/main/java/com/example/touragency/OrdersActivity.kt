@@ -25,6 +25,7 @@ class OrdersActivity : AppCompatActivity(), OnOrderClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var token: String
     private var roles: List<String>? = null // Для ролей
+    private var username: String? = null // Добавляем глобальную переменную username
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,7 @@ class OrdersActivity : AppCompatActivity(), OnOrderClickListener {
         }
 
         token = intent.getStringExtra("TOKEN") ?: ""
+        username = intent.getStringExtra("USERNAME") ?: ""
         roles = intent.getStringArrayListExtra("ROLES")
 
         recyclerView = findViewById(R.id.recyclerViewOrders)
@@ -61,11 +63,14 @@ class OrdersActivity : AppCompatActivity(), OnOrderClickListener {
             // Дополнительная логика для TourOperator
         }
 
-        loadOrders(roles as ArrayList<String>?)
+        if (user != null) {
+            loadOrders(roles as ArrayList<String>?, user)
+        };
 
         btnViewTours.setOnClickListener {
             val intent = Intent(this@OrdersActivity, ToursActivity::class.java)
             intent.putExtra("TOKEN", token)
+            intent.putExtra("USERNAME", username)
             intent.putStringArrayListExtra("ROLES", ArrayList(roles))
             startActivity(intent)
             finish()
@@ -88,13 +93,14 @@ class OrdersActivity : AppCompatActivity(), OnOrderClickListener {
         }
     }
 
-    private fun loadOrders(roles: ArrayList<String>?) {
+    private fun loadOrders(roles: ArrayList<String>?, user: User) {
         RetrofitClient.api.getAllOrders().enqueue(object : Callback<List<Order>> {
             override fun onResponse(call: Call<List<Order>>, response: Response<List<Order>>) {
                 if (response.isSuccessful) {
                     val orders = response.body()
                     if (!orders.isNullOrEmpty()) {
-                        recyclerView.adapter = OrderAdapter(this@OrdersActivity, orders, this@OrdersActivity, roles)
+                        val filteredOrders = orders.filter { (it.user?.userName == user.username) || (it.userId == user.username) || roles?.contains("TourOperator") == true}
+                        recyclerView.adapter = OrderAdapter(this@OrdersActivity, filteredOrders, this@OrdersActivity, roles, user.username)
                     } else {
                         Toast.makeText(this@OrdersActivity, "Нет доступных заказов", Toast.LENGTH_SHORT).show()
                     }

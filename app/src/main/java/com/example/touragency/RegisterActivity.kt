@@ -22,7 +22,12 @@ class RegisterActivity : AppCompatActivity() {
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val etPasswordConfirm = findViewById<EditText>(R.id.etPasswordConfirm)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
+        val btnCancel = findViewById<TextView>(R.id.btnCancel)
         val tvPasswordError = findViewById<TextView>(R.id.tvPasswordError)
+
+        btnCancel.setOnClickListener {
+            finish()
+        }
 
         btnRegister.setOnClickListener {
             val email = etEmail.text.toString().trim()
